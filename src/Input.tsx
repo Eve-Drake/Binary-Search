@@ -1,12 +1,15 @@
-import e from 'express'
 import React, { useState } from 'react'
 
-const Input = () => {
+interface Props {
+    setNumberArray : React.Dispatch<React.SetStateAction<number[]>>,
+    numberArray : number[]
+}
+
+const Input = ({setNumberArray, numberArray}: Props) => {
     const [stringNum, setStringNum] = useState<string>('')
-    const [num, setNum] = useState<number>(0)
 
     const handleSubmit = () =>{
-        setNum(parseInt(stringNum))
+        setNumberArray([...numberArray, parseInt(stringNum)])
     }
 
   return (

@@ -10,12 +10,19 @@ function App() {
     if(start > end){
       return false
     }
-    
+    let middle : number = Math.floor((start + end) /2)
+    if(array[middle] === target){
+      return true
+    }
   }
 
   return (
     <div className="App">
-      <Input />
+      <Input setNumberArray={setNumberArray} numberArray={numberArray}/>
+
+      {numberArray.map((number, index)=>(
+        <div key={index}>{number}</div>
+      ))}
     </div>
   )
 }
