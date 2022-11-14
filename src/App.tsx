@@ -14,6 +14,12 @@ function App() {
     if(array[middle] === target){
       return true
     }
+    if(array[middle] > target){
+      quickSort(array, target, start, middle -1)
+    }
+    else{
+      quickSort(array, target, middle + 1, end)
+    }
   }
 
   return (
