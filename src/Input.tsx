@@ -10,9 +10,12 @@ const Input = ({setNumberArray, numberArray}: Props) => {
     const [numberCheck, setNumberCheck] = useState<boolean>(true)
 
     const handleSubmit = () =>{
-        if(numberCheck && stringNum){
+        if(stringNum && stringNum > 0 && stringNum <= 100){
             setNumberArray([...numberArray, stringNum]);
             setStringNum(1)
+        }
+        else{
+            setNumberCheck(false)
         }
     }
 
@@ -22,10 +25,12 @@ const Input = ({setNumberArray, numberArray}: Props) => {
 
   return (
     <div>
-        {!numberCheck && <p>Please Enter a Number</p>}
+        <h1>Please enter a number between 1 and 100</h1>
+        {!numberCheck && <p>Please Enter a Number between 1 and 100</p>}
         <input 
             type='number'
             value={stringNum}
+            min={1}
             onChange={(e) => setStringNum(parseInt(e.target.value))}
         />
         <button onClick={handleSubmit}>Submit</button>
