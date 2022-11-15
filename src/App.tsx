@@ -1,4 +1,3 @@
-import e from 'express'
 import { useEffect, useState } from 'react'
 import Input from './Input'
 
@@ -15,7 +14,6 @@ function App() {
   useEffect(()=>{
     binarySearch(sortedNumberArray, search)
   }, [search, numberArray])
-
 
   const binarySearch = (array : number[], target : number) =>{
     var start : number = 0;
