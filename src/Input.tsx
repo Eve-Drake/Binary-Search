@@ -20,7 +20,7 @@ const Input = ({setNumberArray, numberArray}: Props) => {
 
     const handleSubmit = () =>{
         if(numberCheck){
-            setNumberArray([...numberArray, stringNum]);
+            setNumberArray([stringNum, ...numberArray]);
             setStringNum(1)
         }
     }
@@ -41,6 +41,7 @@ const Input = ({setNumberArray, numberArray}: Props) => {
         />
         <button onClick={handleSubmit}>Submit</button>
         <button onClick={handleClear}>Clear</button>
+
     </div>
   )
 }

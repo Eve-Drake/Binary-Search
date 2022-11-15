@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 import Input from './Input'
 
 function App() {
@@ -25,10 +23,13 @@ function App() {
   return (
     <div className="App">
       <Input setNumberArray={setNumberArray} numberArray={numberArray}/>
-
-      {numberArray.map((number, index)=>(
-        <div key={index}>{number}</div>
-      ))}
+      <div >
+        {numberArray.map((number, index)=>(
+          <div className='container' key={index}>
+            <p>{number}, </p>
+          </div>        
+        ))}
+        </div>
     </div>
   )
 }
