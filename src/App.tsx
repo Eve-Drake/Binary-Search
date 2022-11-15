@@ -12,6 +12,10 @@ function App() {
     setSortedNumberArray(numberArray.sort())
   },[numberArray])
 
+  useEffect(()=>{
+    binarySearch(sortedNumberArray, search)
+  }, [search, numberArray])
+
 
   const binarySearch = (array : number[], target : number) =>{
     var start : number = 0;
@@ -48,8 +52,7 @@ function App() {
         value={search}
         onChange={(e) => setSearch(parseInt(e.target.value))}
         />
-        <button onClick={()=>binarySearch(sortedNumberArray, search)}>Check</button>
-        <p>{(numberInArray ? 'Number Is In the Array' : 'Number Is Not In the Array')}</p>
+        <p>{(numberInArray ? `${search} is in the Array` : `${search} is not in the Array` )}</p>
     </div>
   )
 }
