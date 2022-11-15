@@ -1,23 +1,36 @@
-import { useState } from 'react'
+import e from 'express'
+import { useEffect, useState } from 'react'
 import Input from './Input'
 
 function App() {
   const [numberArray, setNumberArray] = useState<number[]>([])
+  const [sortedNumberArray, setSortedNumberArray] = useState<number[]>([])
+  const [numberInArray, setNumberInArray] = useState<boolean>(false)
+  const [search, setSearch] = useState<number>(1)
 
-  const quickSort = (array: number[], target: number, start: number, end: number) =>{
-    if(start > end){
-      return false
+  useEffect(()=>{
+    setSortedNumberArray(numberArray.sort())
+  },[numberArray])
+
+
+  const binarySearch = (array : number[], target : number) =>{
+    var start : number = 0;
+    var end : number = array.length - 1;
+    while (start <= end){
+      let mid = Math.floor((start + end) / 2);
+      if(array[mid] === target){
+        setNumberInArray(true);
+        return mid;
+      }
+      else if(array[mid] < target){
+        start = mid + 1;
+      }
+      else{
+        end = mid - 1;
+      }
     }
-    let middle : number = Math.floor((start + end) /2)
-    if(array[middle] === target){
-      return true
-    }
-    if(array[middle] > target){
-      quickSort(array, target, start, middle -1)
-    }
-    else{
-      quickSort(array, target, middle + 1, end)
-    }
+    setNumberInArray(false);
+    return -1;
   }
 
   return (
@@ -30,6 +43,13 @@ function App() {
           </div>        
         ))}
         </div>
+        <input 
+        type='number'
+        value={search}
+        onChange={(e) => setSearch(parseInt(e.target.value))}
+        />
+        <button onClick={()=>binarySearch(sortedNumberArray, search)}>Check</button>
+        <p>{(numberInArray ? 'Number Is In the Array' : 'Number Is Not In the Array')}</p>
     </div>
   )
 }
