@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface Props {
     setNumberArray : React.Dispatch<React.SetStateAction<number[]>>,
@@ -6,20 +6,30 @@ interface Props {
 }
 
 const Input = ({setNumberArray, numberArray}: Props) => {
-    const [stringNum, setStringNum] = useState<string>('')
+    const [stringNum, setStringNum] = useState<number>(1);
+    const [numberCheck, setNumberCheck] = useState<boolean>(true)
 
     const handleSubmit = () =>{
-        setNumberArray([...numberArray, parseInt(stringNum)])
+        if(numberCheck && stringNum){
+            setNumberArray([...numberArray, stringNum]);
+            setStringNum(1)
+        }
+    }
+
+    const handleClear = () =>{
+        setNumberArray([]);
     }
 
   return (
     <div>
+        {!numberCheck && <p>Please Enter a Number</p>}
         <input 
-            type='text'
+            type='number'
             value={stringNum}
-            onChange={(e) => setStringNum(e.target.value)}
+            onChange={(e) => setStringNum(parseInt(e.target.value))}
         />
         <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleClear}>Clear</button>
     </div>
   )
 }
