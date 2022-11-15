@@ -9,13 +9,19 @@ const Input = ({setNumberArray, numberArray}: Props) => {
     const [stringNum, setStringNum] = useState<number>(1);
     const [numberCheck, setNumberCheck] = useState<boolean>(true)
 
-    const handleSubmit = () =>{
+    useEffect(()=>{
         if(stringNum && stringNum > 0 && stringNum <= 100){
-            setNumberArray([...numberArray, stringNum]);
-            setStringNum(1)
+            setNumberCheck(true)
         }
         else{
             setNumberCheck(false)
+        }
+    },[stringNum])
+
+    const handleSubmit = () =>{
+        if(numberCheck){
+            setNumberArray([...numberArray, stringNum]);
+            setStringNum(1)
         }
     }
 
