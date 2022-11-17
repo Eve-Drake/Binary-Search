@@ -18,6 +18,7 @@ function App() {
   const binarySearch = (array : number[], target : number) =>{
     var start : number = 0;
     var end : number = array.length - 1;
+    
     while (start <= end){
       let mid = Math.floor((start + end) / 2);
       if(array[mid] === target){

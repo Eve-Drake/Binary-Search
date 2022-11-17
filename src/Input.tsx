@@ -34,6 +34,7 @@ const Input = ({setNumberArray, numberArray}: Props) => {
         <h1>Please enter a number between 1 and 100</h1>
         {!numberCheck && <p>Please Enter a Number between 1 and 100</p>}
         <input 
+            className='numberArrayInput'
             type='number'
             value={stringNum}
             min={1}
